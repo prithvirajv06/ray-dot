@@ -1,0 +1,135 @@
+    .container {
+      display: flex;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .toolbar {
+      width: 200px;
+      background: #f0f0f0;
+      border-right: 1px solid #ccc;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .workspace {
+      flex: 1;
+      position: relative;
+      background: #fafafa;
+      overflow: hidden;
+      cursor: grab;
+    }
+
+    .workspace.panning {
+      cursor: grabbing;
+    }
+
+    .elements-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: 0 0;
+    }
+
+    .canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .toolbar-item {
+      padding: 10px;
+      margin: 5px 0;
+      background: #e0e0e0;
+      border: 1px solid #ccc;
+      cursor: grab;
+      user-select: none;
+    }
+
+    .toolbar-item:hover {
+      background: #d0d0d0;
+    }
+
+    .workspace-element {
+      position: absolute;
+      padding: 15px;
+      background: white;
+      border: 2px solid #ccc;
+      cursor: move;
+      user-select: none;
+      min-width: 100px;
+      min-height: 50px;
+      z-index: 2;
+    }
+
+    .workspace-element:hover {
+      border-color: #007bff;
+    }
+
+    .workspace-element.selected {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .connection-point {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #007bff;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 3;
+    }
+
+    .connection-point.input {
+      left: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .connection-point.output {
+      right: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .connection-point:hover {
+      background: #0056b3;
+      transform: scale(1.2) translateY(-50%);
+    }
+
+    .connection-point.output:hover {
+      transform: scale(1.2) translateY(-50%);
+    }
+
+    .json-output {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      width: 300px;
+      height: 200px;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 10px;
+      font-family: monospace;
+      font-size: 12px;
+      overflow: auto;
+      z-index: 4;
+    }
+
+    .json-output pre {
+      margin: 0;
+      white-space: pre-wrap;
+    }
+
+    .workspace.connecting {
+      cursor: crosshair;
+    }
+
+    .workspace-process {
+      background-color: gray;
+    }

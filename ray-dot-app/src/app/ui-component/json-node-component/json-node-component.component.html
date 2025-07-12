@@ -1,0 +1,38 @@
+<li class="tree-node" [ngStyle]="{ 'border-left-color': getColor() }">
+  <div class="d-inline-flex justify-content-start node-content" style="gap:0.5em">
+    <ng-container *ngIf="(isArray(value) && value.length==0) || isObject(value)">
+      <div class="d-flex justify-content-end">
+        <button><i class="fa-solid fa-plus"></i></button>
+      </div>
+    </ng-container>
+    <span class="key">{{ key }}:</span>
+  </div>
+
+  <!-- Object -->
+  <ng-container *ngIf="isObject(value)">
+    <ul class="tree-branch">
+      <ng-container *ngFor="let item of value | keyvalue">
+        <app-json-node-component [key]="item.key" [value]="item.value" [depth]="depth + 1"></app-json-node-component>
+      </ng-container>
+    </ul>
+  </ng-container>
+
+  <!-- Array -->
+  <ng-container *ngIf="isArray(value)">
+    <ul class="tree-branch">
+      <ng-container *ngFor="let item of value; let i = index">
+        <ng-container *ngIf="isObject(item) || isArray(item)">
+          <app-json-node-component [key]="i" [value]="item" [depth]="depth + 1"></app-json-node-component>
+        </ng-container>
+        <ng-container *ngIf="!isObject(item) && !isArray(item)">
+          <li><span class="badge">🏷️ {{ item }}</span></li>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </ng-container>
+
+  <!-- Primitive -->
+  <ng-container *ngIf="!isObject(value) && !isArray(value)">
+    <span class="value-text">{{ value }}</span>
+  </ng-container>
+</li>

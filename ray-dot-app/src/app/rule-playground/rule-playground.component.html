@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="toolbar">
+    <div class="toolbar-item" *ngFor="let item of toolbarItems" draggable="true"
+      (dragstart)="onDragStart($event, item.type)" [attr.data-type]="item.type">
+      {{ item.label }}
+    </div>
+  </div>
+
+  <div class="workspace" #workspace (dragover)="onDragOver($event)" (drop)="onDrop($event)"
+    (click)="onWorkspaceClick($event)" (mousemove)="onMouseMove($event)" (mousedown)="onWorkspaceMouseDown($event)"
+    (mouseup)="onWorkspaceMouseUp($event)" (wheel)="onWheel($event)">
+
+    <canvas #canvas class="canvas"></canvas>
+
+    <div class="elements-container" [style.transform]="getTransform()">
+      @for (element of elements; track $index) {
+      @switch (element.type) {
+      @case ("button") {
+      <div class="workspace-element workspace-process" [class.selected]="selectedElement?.id === element.id" [style.left.px]="element.x"
+        [style.top.px]="element.y" [attr.data-id]="element.id" [attr.data-type]="element.type"
+        (mousedown)="onElementMouseDown($event, element)" (click)="onElementClick($event, element)">
+
+        <div>{{ element.config.label }}</div>
+
+        <div class="connection-point input" data-type="input"
+          (click)="onConnectionPointClick($event, element.id, 'input')"></div>
+
+        <div class="connection-point output" data-type="output"
+          (click)="onConnectionPointClick($event, element.id, 'output')"></div>
+      </div>
+      }
+      @default {
+      <div class="workspace-element" [class.selected]="selectedElement?.id === element.id" [style.left.px]="element.x"
+        [style.top.px]="element.y" [attr.data-id]="element.id" [attr.data-type]="element.type"
+        (mousedown)="onElementMouseDown($event, element)" (click)="onElementClick($event, element)">
+
+        <div>{{ element.config.label }}</div>
+
+        <div class="connection-point input" data-type="input"
+          (click)="onConnectionPointClick($event, element.id, 'input')"></div>
+
+        <div class="connection-point output" data-type="output"
+          (click)="onConnectionPointClick($event, element.id, 'output')"></div>
+      </div>
+      }
+      }
+
+      }
+
+    </div>
+  </div>
+
+  <div class="json-output">
+    <pre>{{ jsonOutput }}</pre>
+  </div>
+</div>

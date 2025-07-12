@@ -1,0 +1,95 @@
+header {
+  padding: 0.5em;
+  border-radius: 2em;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  padding-right: 1em;
+
+  .logo {
+    height: 2em;
+  }
+}
+
+.header-action-btn {
+  border-radius: 2em;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  background-color: #ff6700;
+  cursor: pointer;
+
+  i {
+    padding: 0.8em;
+    color: #fff;
+  }
+}
+
+section {
+  padding: 0.5em;
+  height: 50em;
+
+  nav {
+    padding: 1em;
+    border-radius: 2em;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+      0 1px 3px rgba(0, 0, 0, 0.08);
+    width: 14em;
+    height: 100%;
+    background-color: #fff;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        background-color: #ff6700;
+        color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+          0 1px 3px rgba(0, 0, 0, 0.08);
+        padding: 1em;
+        border-radius: 2em;
+        margin-bottom: 0.5em;
+        cursor: pointer;
+
+        i {
+          background-color: #fff;
+          padding: 0.3em;
+          color: #ff6700;
+          border-radius: 50%;
+          width: 1em;
+        }
+
+
+      }
+
+      .router-link-active {
+        background-color: white;
+        border-color: #ff6700;
+        color: #ff6700;
+        box-shadow: 0 4px 6px #ff6700,
+          0 1px 3px #ff6700;
+      }
+
+      :hover {
+        background-color: white;
+        border-color: #ff6700;
+        color: #ff6700;
+        box-shadow: 0 4px 6px #ff6700,
+          0 1px 3px #ff6700;
+      }
+
+    }
+  }
+}
+
+.main-content {
+  padding: 1em;
+  border-radius: 2em;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  padding-right: 1em;
+  height: 100%;
+  width: 85%;
+}

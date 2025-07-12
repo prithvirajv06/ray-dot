@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-9 fix-height box-pad">
+    @for (item of jsonData| keyvalue; track $index) {
+    <app-json-node-component [key]="item.key" [value]="item.value"></app-json-node-component>
+    }
+  </div>
+</div>

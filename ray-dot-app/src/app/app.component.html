@@ -1,0 +1,35 @@
+<!-- <app-rule-playground></app-rule-playground> -->
+<header>
+  <div class="d-flex justify-content-between">
+    <img class="logo" src="logo.png">
+    <div class="d-flex justify-content-end " style="gap: 0.5em;">
+      <span class="header-action-btn">
+        <i class="fa-solid fa-user-astronaut"></i>
+      </span>
+      <span class="header-action-btn">
+        <i class="fa-solid fa-gear"></i>
+      </span>
+      <span class="header-action-btn">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </span>
+    </div>
+  </div>
+</header>
+
+<section class="d-flex" style="gap: 0.8em;">
+  <nav>
+    <ul>
+      @for (item of navigationItems; track $index) {
+      <li class="d-flex justify-content-start" style="gap: 0.5em;" [routerLink]="item.route"
+        routerLinkActive="router-link-active">
+        <i [ngClass]="item.icon"></i>
+        {{item.label}}
+      </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</section>
