@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-rule-manager',
+  selector: 'fox-rule-manager',
   imports: [],
   templateUrl: './rule-manager.component.html',
   styleUrl: './rule-manager.component.scss'

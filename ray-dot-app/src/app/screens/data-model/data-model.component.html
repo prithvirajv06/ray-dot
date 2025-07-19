@@ -1,8 +1,95 @@
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-9 fix-height box-pad">
-    @for (item of jsonData| keyvalue; track $index) {
-    <app-json-node-component [key]="item.key" [value]="item.value"></app-json-node-component>
-    }
+<div class="d-flex justify-content-between">
+  <input type="text" id="searchInput" placeholder="Search..." />
+  <div>
+    <button class="fox-button" (click)="showStructDialog.set(true)">
+      <i class="fa-solid fa-plus"></i> New Data Model
+    </button>
   </div>
 </div>
+<table id="dataTable">
+  <thead>
+    <tr>
+      <th style="width: 3%;"></th>
+      <th style="width: 20%;">Model Name</th>
+      <th style="width: 10%;">Version</th>
+      <th style="width: 50%;">Description</th>
+      <th style="width: 30%;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <i class="fa-solid fa-star favorite"></i>
+      </td>
+      <td class="model-name">Quote Calculate</td>
+      <td>
+        <fox-badge icon="code-branch" label="V1.0.0"></fox-badge>
+      </td>
+      <td>Contains structure of the policy</td>
+      <td>
+        <div class="action-buttons">
+          <button class="edit"><i class="fas fa-edit"></i></button>
+          <button class="delete"><i class="fas fa-trash-alt"></i></button>
+          <button class="clone"><i class="fas fa-clone"></i></button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <i class="fa-solid fa-star normal"></i>
+      </td>
+      <td class="model-name">Windstor Deducatable Input</td>
+      <td>
+        <fox-badge icon="code-branch" label="V1.0.0"></fox-badge>
+      </td>
+      <td>Contains structure of the policy</td>
+      <td>
+        <div class="action-buttons">
+          <button class="edit"><i class="fas fa-edit"></i></button>
+          <button class="delete"><i class="fas fa-trash-alt"></i></button>
+          <button class="clone"><i class="fas fa-clone"></i></button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <i class="fa-solid fa-star normal"></i>
+      </td>
+      <td class="model-name">Policy Input</td>
+      <td>
+        <fox-badge icon="code-branch" label="V1.0.0"></fox-badge>
+      </td>
+      <td>Contains structure of the policy</td>
+      <td>
+        <div class="action-buttons">
+          <button class="edit"><i class="fas fa-edit"></i></button>
+          <button class="delete"><i class="fas fa-trash-alt"></i></button>
+          <button class="clone"><i class="fas fa-clone"></i></button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+@if (showStructDialog()) {
+<fox-dialog (close)="closeDialog()" dialogSize="large">
+  <div class="row">
+    <div class="col-md-3">
+      <form>
+        <fox-input label="Modal Name" id="modal-name"></fox-input>
+        <fox-input label="Version" id="version"></fox-input>
+        <fox-textarea label="Description" id="description"></fox-textarea>
+      </form>
+      {{jsonData|json}}
+    </div>
+    <div class="col-md-9 fix-height box-pad">
+      @for (item of jsonData| keyvalue; track $index) {
+      <fox-json-node-component [key]="item.key" [value]="item.value"></fox-json-node-component>
+      }
+    </div>
+  </div>
+  <hr>
+  <fox-button label="Save" id="save-data" icon="floppy-disk"></fox-button>
+</fox-dialog>
+}
+
+<!--  -->

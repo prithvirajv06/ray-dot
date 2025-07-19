@@ -1,38 +1,62 @@
-<li class="tree-node" [ngStyle]="{ 'border-left-color': getColor() }">
-  <div class="d-inline-flex justify-content-start node-content" style="gap:0.5em">
-    <ng-container *ngIf="(isArray(value) && value.length==0) || isObject(value)">
-      <div class="d-flex justify-content-end">
-        <button><i class="fa-solid fa-plus"></i></button>
-      </div>
+<li class="tree-node" [ngStyle]="{ 'margin-left.px': depth * 16, 'border-left-color': getColor() }">
+  <div class="node-header d-inline-flex   align-items-center" style="gap: 0.4em;">
+    <ng-container *ngIf="isExpandable(value)">
+      <button class="btn btn-sm btn-outline-primary" (click)="toggleNode()">
+        {{ isExpanded ? '−' : '+' }}
+      </button>
     </ng-container>
-    <span class="key">{{ key }}:</span>
+    <span class="key fw-bold">{{ key }}:</span>
+    <span class="type-badge">{{ getValueType(value) }}</span>
+
+    <ng-container *ngIf="showAddButton(value)">
+      <button class="btn btn-sm btn-outline-success" (click)="openAddFieldDialog(value)">+ Add</button>
+    </ng-container>
   </div>
 
-  <!-- Object -->
-  <ng-container *ngIf="isObject(value)">
-    <ul class="tree-branch">
-      <ng-container *ngFor="let item of value | keyvalue">
-        <app-json-node-component [key]="item.key" [value]="item.value" [depth]="depth + 1"></app-json-node-component>
-      </ng-container>
+  <div *ngIf="isExpanded">
+    @if (!value || value.length==0) {
+    <ul class="tree-branch list-unstyled">
+      <li class="primitive-value"><span class="">! No element</span></li>
     </ul>
-  </ng-container>
-
-  <!-- Array -->
-  <ng-container *ngIf="isArray(value)">
-    <ul class="tree-branch">
-      <ng-container *ngFor="let item of value; let i = index">
-        <ng-container *ngIf="isObject(item) || isArray(item)">
-          <app-json-node-component [key]="i" [value]="item" [depth]="depth + 1"></app-json-node-component>
-        </ng-container>
-        <ng-container *ngIf="!isObject(item) && !isArray(item)">
-          <li><span class="badge">🏷️ {{ item }}</span></li>
+    }@else {
+    <ul class="tree-branch list-unstyled">
+      <!-- Object -->
+      <ng-container *ngIf="isObject(value)">
+        <ng-container *ngFor="let item of value | keyvalue">
+          <fox-json-node-component [key]="item.key" [value]="item.value" [depth]="depth + 1"
+            (valueChange)="valueChangeinData($event)"></fox-json-node-component>
         </ng-container>
       </ng-container>
-    </ul>
-  </ng-container>
 
-  <!-- Primitive -->
-  <ng-container *ngIf="!isObject(value) && !isArray(value)">
-    <span class="value-text">{{ value }}</span>
-  </ng-container>
+      <!-- Array -->
+      <ng-container *ngIf="isArray(value)">
+        <ng-container *ngFor="let item of value; let i = index">
+          <ng-container *ngIf="isComplex(item)">
+            <fox-json-node-component [key]="i" [value]="item" [depth]="depth + 1"
+              (valueChange)="valueChangeinData($event)"></fox-json-node-component>
+          </ng-container>
+          <ng-container *ngIf="!isComplex(item)">
+            <li class="primitive-value"><span class="badge bg-secondary">🏷️ {{ item }}</span></li>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
+      <!-- Primitive -->
+    </ul>
+    }
+  </div>
 </li>
+
+
+@if (showFieldModal()) {
+<fox-dialog dialogSize="small" title="Field" (close)="closeDialog()">
+  <form [formGroup]="fieldModel">
+    <fox-input id="field-key" label="Field Key" name="fieldKey" formControlName="key"></fox-input>
+    <fox-dropdown id="data-type" label="Data Type" name="fieldType" formControlName="type"
+      [items]=typeDropdown></fox-dropdown>
+    <div class="d-flex justify-content-start">
+      <fox-button label="Save field" id="save-field" (click)="saveField()" [disabled]="!fieldModel.valid"></fox-button>
+    </div>
+  </form>
+</fox-dialog>
+}

@@ -1,0 +1,8 @@
+<div class="popup-overlay active" id="popupOverlay"></div>
+
+<div class="popup-content active" [ngClass]="dialogSize" id="popupContent">
+  <button class="popup-close" (click)="closePopup()">×</button>
+  <h2>{{title}}</h2>
+  <hr>
+  <ng-content></ng-content>
+</div>

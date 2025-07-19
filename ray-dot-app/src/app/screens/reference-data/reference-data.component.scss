@@ -1,0 +1,172 @@
+/* json-renderer.component.css */
+.container {
+  max-width: 700px;
+  height: 45em;
+  margin: auto;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+li {
+  margin: 10px 0;
+  padding: 10px;
+  background: #ecf0f1;
+  border-radius: 5px;
+}
+
+.key {
+  font-weight: 600;
+  color: #34495e;
+}
+
+/* Add to json-renderer.component.css */
+.badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.badge {
+  background-color: #3498db;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.box-pad {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  padding: 2em;
+  border-radius: 2em;
+  border-right: none;
+  border-left: 1px solid #ff6600;
+  border-top: 1px solid #ff6600;
+}
+
+
+//Search table starts
+#searchInput {
+  padding: 10px 14px;
+  width: 250px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+}
+
+#searchInput:focus {
+  border-color: #0078d7;
+  box-shadow: 0 0 8px rgba(0, 120, 215, 0.4);
+  outline: none;
+}
+
+#dataTable {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#dataTable th {
+  background-color: #000000;
+  color: #fff;
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+}
+
+#dataTable td {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+#dataTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#dataTable tr:hover {
+  background-color: #e6f2ff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.action-buttons button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  font-size: 16px;
+  color: white;
+}
+
+.action-buttons .edit {
+  background-color: #0078d7;
+}
+
+.action-buttons .delete {
+  background-color: #d83b01;
+}
+
+.action-buttons .clone {
+  background-color: #2d7d9a;
+}
+
+.action-buttons button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.action-buttons button i {
+  pointer-events: none;
+}
+
+//Search table Ends
+
+
+.model-name {
+  color: #d83b01;
+}
+
+.favorite {
+  color: #ff581c;
+}
+
+.normal {
+  color: #00000034;
+}
+
+i {
+  cursor: pointer;
+}
+
+
+
+
+form {
+  margin-top: 2em;
+}
+
+
+
+input {}

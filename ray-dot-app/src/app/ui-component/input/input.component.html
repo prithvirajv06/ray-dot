@@ -1,0 +1,15 @@
+<div class="left-form-control">
+  <label>{{label}}</label>
+  <div class="input-wraper">
+    <input [id]="inputId"
+        [type]="type"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [value]="value"
+        (input)="onInput($event)"
+        (blur)="onBlur()"
+        (focus)="onFocus()"
+        class="custom-input"
+        [class.error]="hasError">
+  </div>
+</div>

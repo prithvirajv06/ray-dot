@@ -17,7 +17,7 @@ import {
 import { from } from 'rxjs';
 
 @Component({
-  selector: 'app-rule-playground',
+  selector: 'fox-rule-playground',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './rule-playground.component.html',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-decision-table',
+  selector: 'fox-decision-table',
   imports: [],
   templateUrl: './decision-table.component.html',
   styleUrl: './decision-table.component.scss'

@@ -7,7 +7,7 @@ import { navigation as mockNavigation } from './mock/navigation';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, NgClass],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, NgClass, RulePlaygroundComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

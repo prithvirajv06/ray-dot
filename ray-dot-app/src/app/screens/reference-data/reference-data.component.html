@@ -1,1 +1,78 @@
-<p>reference-data works!</p>
+<div class="d-flex justify-content-between">
+  <input type="text" id="searchInput" placeholder="Search..." />
+  <div>
+    <button class="fox-button" (click)="showReferenceDataDialog.set(true)">
+      <i class="fa-solid fa-plus"></i> New Reference
+    </button>
+  </div>
+</div>
+
+
+<table id="dataTable">
+  <thead>
+    <tr>
+      <th style="width: 3%;"></th>
+      <th style="width: 40%;">Reference Name</th>
+      <th style="width: 20%;">No Of References</th>
+      <th style="width: 50%;">Description</th>
+      <th style="width: 30%;">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <i class="fa-solid fa-star favorite"></i>
+      </td>
+      <td class="model-name">Quote_References</td>
+      <td>
+        21
+      </td>
+      <td>Contains structure of the policy</td>
+      <td>
+        <div class="action-buttons">
+          <button class="edit"><i class="fas fa-edit"></i></button>
+          <button class="delete"><i class="fas fa-trash-alt"></i></button>
+          <button class="clone"><i class="fas fa-clone"></i></button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+@if (showReferenceDataDialog()) {
+<fox-dialog (close)="showReferenceDataDialog.set(false)" dialogSize="large" title="Reference Data">
+  <div>
+    <table id="dataTable">
+      <thead>
+        @for (item of referenceData[0]|keyvalue; track $index;let i=$index) {
+        <th>
+          <b>{{item.key}}</b>
+        </th>
+        }
+        <th>
+          <fox-button label="" id="add_col" icon="plus" (click)="showAddFieldDialog.set(true)"></fox-button>
+        </th>
+      </thead>
+      <tbody>
+        @for (refData of referenceData; track $index) {
+        <tr>
+          @for (item of referenceData[0]|keyvalue; track $index;let i=$index) {
+          <td>
+            <p>{{item.key}}</p>
+          </td>
+          }
+        </tr>
+        }
+        <fox-button id="add-row" label="Add Row" (click)="addRow()"></fox-button>
+      </tbody>
+    </table>
+  </div>
+</fox-dialog>
+}
+
+@if (showAddFieldDialog()) {
+<fox-dialog (close)="showAddFieldDialog.set(false)" dialogSize="small" title="New Field">
+  <fox-input id="new-key" [(ngModel)]="fieldName" label="New Column"></fox-input>
+  <fox-button id="save-col" label="Add Column" (click)="addColToAllRow(fieldName)"></fox-button>
+</fox-dialog>
+}

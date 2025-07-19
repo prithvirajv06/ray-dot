@@ -1,0 +1,21 @@
+<div class="left-form-control">
+  <label>{{label}}</label>
+  <div class="input-wraper">
+    <div>
+      <span class="d-inline-flex">
+        <input (click)="showDropdown.set(true)" [id]="inputId" [placeholder]="placeholder" [disabled]="disabled"
+          [value]="value.desc" (blur)="onBlur()" (focus)="onFocus()" class="custom-input" [class.error]="hasError">
+        <div>
+          <i class="fa-solid fa-square-caret-down drop-i"></i>
+        </div>
+      </span>
+      @if (showDropdown()) {
+      <div class="d-flex flex-column dropdown-wraper">
+        @for (item of items; track $index) {
+        <span (click)="setOption(item)" class="option">{{item.desc}}</span>
+        }
+      </div>
+      }
+    </div>
+  </div>
+</div>

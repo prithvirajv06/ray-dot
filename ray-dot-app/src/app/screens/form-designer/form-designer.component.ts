@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-form-designer',
+  selector: 'fox-form-designer',
   imports: [],
   templateUrl: './form-designer.component.html',
   styleUrl: './form-designer.component.scss'
